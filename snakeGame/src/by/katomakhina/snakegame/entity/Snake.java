@@ -50,16 +50,16 @@ public class Snake {
         if (direction == SnakeGame.DOWN) {
             y++;
         }
-        if (x > (SnakeGame.FIELD_WIDTH - 1)) {
-            x = 0;
+        if (x > SnakeGame.FIELD_WIDTH - 2) {
+            x = 1;
         }
-        if (x < 0) {
-            x = SnakeGame.FIELD_WIDTH - 1;
+        if (x < 1) {
+            x = SnakeGame.FIELD_WIDTH - 2;
         }
-        if (y > (SnakeGame.FIELD_HIGHT - 1)) {
-            y = 0;
+        if (y > SnakeGame.FIELD_HIGHT - 1) {
+            y = 4;
         }
-        if (y < 0) {
+        if (y < 4) {
             y = SnakeGame.FIELD_HIGHT - 1;
         }
         SnakeGame.gameOver = isInsideSnake(x, y) || (canvas.poison.isPoison(x,y));

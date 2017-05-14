@@ -24,8 +24,8 @@ public class Food extends Point {
     public void next(Snake snake){
         int x, y;
         do{
-            x = random.nextInt(SnakeGame.FIELD_WIDTH);
-            y = random.nextInt(SnakeGame.FIELD_HIGHT);
+            x = random.nextInt(SnakeGame.FIELD_WIDTH - 2) + 1;
+            y = random.nextInt(SnakeGame.FIELD_HIGHT - 5) + 4;
         } while(snake.isInsideSnake(x, y));
         this.setXY(x, y);
     }
