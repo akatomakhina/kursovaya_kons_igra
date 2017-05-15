@@ -28,8 +28,6 @@ public class Snake {
         this.snake = snake;
     }
 
-    public Snake() {
-    }
 
     boolean isFood(Point food) {
         return snake.get(0).getX() == food.getX() && snake.get(0).getY() == food.getY();
@@ -62,11 +60,18 @@ public class Snake {
         if (y < 4) {
             y = SnakeGame.FIELD_HIGHT - 1;
         }
-        SnakeGame.gameOver = isInsideSnake(x, y) || (canvas.poison.isPoison(x,y));
+        SnakeGame.gameOver = isInsideSnake(x, y) || (canvas.poison.isPoison(x, y));
         snake.add(0, new Point(x, y));
         if (isFood(canvas.food)) {
             canvas.food.eat();
             frame.setTitle(SnakeGame.TITLE_OF_PROGRAM + " : " + snake.size());
+            SnakeGame.counter++;
+            if (SnakeGame.counter == 10) {
+                SnakeGame.showDelay = SnakeGame.showDelay - 10;
+                SnakeGame.speed = SnakeGame.speed + 10;
+                SnakeGame.lvl++;
+                SnakeGame.counter = 0;
+            }
         } else {
             snake.remove(snake.size() - 1);
         }
@@ -74,7 +79,7 @@ public class Snake {
 
     public void setDirection(int direction) {
         if ((direction >= SnakeGame.LEFT) && (direction <= SnakeGame.DOWN)) {
-            if(Math.abs(this.direction - direction) != 2){
+            if (Math.abs(this.direction - direction) != 2) {
                 this.direction = direction;
             }
         }

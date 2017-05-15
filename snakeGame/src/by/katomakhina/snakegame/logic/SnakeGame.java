@@ -42,6 +42,17 @@ public class SnakeGame {
     JFrame frame;
     Canvas canvasPanel;
     static public boolean gameOver = false;
+    public static int showDelay = 100;         //милисекунды
+    public static int speed = 0;
+    public static int lvl = 1;
+    public static int counter = 0;
+
+    public static enum STATE {
+        GAME,
+        MENU
+    }
+
+    public static STATE State = STATE.MENU;
 
     public static void main(String[] args) {
         new SnakeGame().go();
@@ -66,6 +77,8 @@ public class SnakeGame {
                 canvasPanel.snake.setDirection(e.getKeyCode());
             }
         });
+
+        frame.addMouseListener(new MouseInput());
 
         frame.setVisible(true);
 

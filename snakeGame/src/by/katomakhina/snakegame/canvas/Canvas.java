@@ -7,6 +7,7 @@ import java.awt.*;
 import by.katomakhina.snakegame.logic.SnakeGame;
 import by.katomakhina.snakegame.entity.Food;
 import by.katomakhina.snakegame.entity.Poison;
+import by.katomakhina.snakegame.menu.Menu;
 
 
 public class Canvas extends JPanel {
@@ -15,6 +16,7 @@ public class Canvas extends JPanel {
     public Snake snake = new Snake(SnakeGame.START_SNAKE_X, SnakeGame.START_SNAKE_Y, SnakeGame.START_SNAKE_SIZE, SnakeGame.START_DIRECTION);
     public Food food = new Food();
     public Poison poison = new Poison();
+    Menu menu = new Menu();
 
     @Override
     public void repaint() {
@@ -24,14 +26,21 @@ public class Canvas extends JPanel {
     @Override
     public void paint (Graphics g){
         super.paint(g);
-        snake.paint(g);
-        food.paint(g);
-        poison.paint(g);
-        if(SnakeGame.gameOver){
-            g.setColor(Color.red);
-            g.setFont(new Font("Arial", Font.BOLD, 40));
-            FontMetrics fm = g.getFontMetrics();
-            g.drawString(SnakeGame.GAME_OVER, (SnakeGame.FIELD_WIDTH * SnakeGame.POINT_RADIUS + SnakeGame.FIELD_DX - fm.stringWidth(SnakeGame.GAME_OVER))/2, (SnakeGame.FIELD_HIGHT * SnakeGame.POINT_RADIUS + SnakeGame.FIELD_DY)/2);
+        if (SnakeGame.State == SnakeGame.STATE.GAME) {
+            snake.paint(g);
+            food.paint(g);
+            poison.paint(g);
+            if (SnakeGame.gameOver) {
+                g.setColor(Color.red);
+                g.setFont(new Font("COMIC SANS MS", Font.BOLD, 70));
+                FontMetrics fm = g.getFontMetrics();
+                g.drawString(SnakeGame.GAME_OVER, (SnakeGame.FIELD_WIDTH * SnakeGame.POINT_RADIUS + SnakeGame.FIELD_DX - fm.stringWidth(SnakeGame.GAME_OVER)) / 2, (SnakeGame.FIELD_HIGHT * SnakeGame.POINT_RADIUS + SnakeGame.FIELD_DY) / 2);
+            }
+        }
+        else{
+            if (SnakeGame.State == SnakeGame.STATE.MENU) {
+                menu.renger(g);
+            }
         }
 
         /*TITLE*/
