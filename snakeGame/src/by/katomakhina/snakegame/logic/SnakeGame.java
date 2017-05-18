@@ -21,10 +21,10 @@ public class SnakeGame {
     final public static int START_LOCATION = 200;     //стартовая позиция змейки
 
     /*ЗМЕЙКА*/
-    final public static int START_SNAKE_SIZE = 5;
+    final public static int START_SNAKE_SIZE = 3;
     final public static int START_SNAKE_X = 10;       //в поинтах
     final public static int START_SNAKE_Y = 10;
-    final public static int SHOW_DELAY = 100;         //милисекунды
+    final public static int SHOW_DELAY = 150;         //милисекунды
 
     /*НАПРАВЛЕНИЕ ДВИЖЕНИЯ*/
     final public static int LEFT = 37;                //37, 38, 39, 40 - коды клавиш
@@ -44,7 +44,9 @@ public class SnakeGame {
     static public boolean gameOver = false;
     public static int showDelay = 100;         //милисекунды
     public static int speed = 0;
+    public static int score = 0;
     public static int lvl = 1;
+    public static int lvl_counter = 0;
     public static int counter = 0;
 
     public static enum STATE {
@@ -59,7 +61,7 @@ public class SnakeGame {
     }
 
     /*public static*/ void go() {
-        frame = new JFrame(TITLE_OF_PROGRAM + ":" + START_SNAKE_SIZE);
+        frame = new JFrame(TITLE_OF_PROGRAM);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //закрывает окно при нажатии на exit
         frame.setSize(FIELD_WIDTH * POINT_RADIUS + FIELD_DX, FIELD_HIGHT * POINT_RADIUS + FIELD_DY);    //задает размер окна
         frame.setLocation(START_LOCATION, START_LOCATION);  //задает стартовое положение окна

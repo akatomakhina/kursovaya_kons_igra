@@ -8,6 +8,7 @@ import by.katomakhina.snakegame.logic.SnakeGame;
 import by.katomakhina.snakegame.entity.Food;
 import by.katomakhina.snakegame.entity.Poison;
 import by.katomakhina.snakegame.menu.Menu;
+import by.katomakhina.snakegame.timer.MessageWithTimer;
 
 
 public class Canvas extends JPanel {
@@ -17,6 +18,7 @@ public class Canvas extends JPanel {
     public Food food = new Food();
     public Poison poison = new Poison();
     Menu menu = new Menu();
+    public MessageWithTimer message;
 
     @Override
     public void repaint() {
@@ -43,6 +45,16 @@ public class Canvas extends JPanel {
             }
         }
 
+        if(message != null) {
+            g.setColor(Color.white);
+            g.setFont(new Font("COMIC SANS MS", Font.PLAIN, 50));
+            g.drawString(message.message, SnakeGame.FIELD_WIDTH/2 + 300, 230);
+            message.timer--;
+            if(message.timer == 0) {
+                this.message = null;
+            }
+        }
+
         /*TITLE*/
         g.setColor(Color.white);
         g.drawRect(15, 10, 768, 55);
@@ -52,5 +64,14 @@ public class Canvas extends JPanel {
 
         g.setColor(Color.white);
         g.drawRect(15, 80, 768, 378);
+
+        g.setColor(Color.white);
+        g.setFont(new Font("COMIC SANS MS", Font.PLAIN, 18));
+        g.drawString("Score: " + SnakeGame.score, 680, 30);
+
+
+        g.setColor(Color.white);
+        g.setFont(new Font("COMIC SANS MS", Font.PLAIN, 18));
+        g.drawString("Level: " + SnakeGame.lvl, 680, 55);
     }
 }

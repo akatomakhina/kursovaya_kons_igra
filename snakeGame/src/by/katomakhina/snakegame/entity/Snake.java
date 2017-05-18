@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import by.katomakhina.snakegame.logic.SnakeGame;
 import by.katomakhina.snakegame.canvas.Canvas;
+import by.katomakhina.snakegame.timer.MessageWithTimer;
 
 
 public class Snake {
@@ -64,13 +65,19 @@ public class Snake {
         snake.add(0, new Point(x, y));
         if (isFood(canvas.food)) {
             canvas.food.eat();
-            frame.setTitle(SnakeGame.TITLE_OF_PROGRAM + " : " + snake.size());
+            frame.setTitle(SnakeGame.TITLE_OF_PROGRAM);
             SnakeGame.counter++;
-            if (SnakeGame.counter == 10) {
+            SnakeGame.score++;
+            if (SnakeGame.counter == 3) {
                 SnakeGame.showDelay = SnakeGame.showDelay - 10;
                 SnakeGame.speed = SnakeGame.speed + 10;
                 SnakeGame.lvl++;
+                SnakeGame.lvl_counter++;
                 SnakeGame.counter = 0;
+            }
+            if (SnakeGame.lvl_counter == 1) {
+                canvas.message = new MessageWithTimer("Level: " + SnakeGame.lvl, 10);
+                SnakeGame.lvl_counter = 0;
             }
         } else {
             snake.remove(snake.size() - 1);

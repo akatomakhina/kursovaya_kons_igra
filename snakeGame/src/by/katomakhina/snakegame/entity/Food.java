@@ -9,24 +9,25 @@ public class Food extends Point {
 
     Random random = new Random();
 
-    public Food(){
+    public Food() {
         super(-1, -1);
         this.color = SnakeGame.FOOD_COLOR;
     }
 
-    public void eat(){
+    public void eat() {
         this.setXY(-1, -1);
     }
-    public boolean isEaten(){
+
+    public boolean isEaten() {
         return this.getX() == -1;
     }
 
-    public void next(Snake snake){
+    public void next(Snake snake) {
         int x, y;
-        do{
+        do {
             x = random.nextInt(SnakeGame.FIELD_WIDTH - 2) + 1;
             y = random.nextInt(SnakeGame.FIELD_HIGHT - 5) + 4;
-        } while(snake.isInsideSnake(x, y));
+        } while (snake.isInsideSnake(x, y));
         this.setXY(x, y);
     }
 }
